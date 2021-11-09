@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+
+    .card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+ width: 40%;
+ padding: 2px 16px;
+ 
+}
+</style>
+<body style=" background: linear-gradient(to right,  #66ffcc  0%,  #ff99cc 100%);">
+  <center> <h3>Different Leagues around the world..</h3>    </center> 
+    <center><div id="result">
+            </div></center>
+<script>
+var q = $("#query").val();
+        var url = ` https://allsportsapi.com/api/football/?met=Leagues&APIkey=c3c5e47a711616a60dc5f1ba1d3b6af350157fa7d0beceae17f07965d0394f74`;
+        var result;
+        $.ajax(url).done(function (response) {
+        console.log(response);
+       
+        for(let i =0 ; i < response.result.length;i++){
+            $("#result").append(
+                `
+                <div class="card">
+                <p> <b>League:<b>  ${response.result[i].league_name} <br></p>
+             <p>   <b>Country:<b>  ${response.result[i].country_name}<br> </p>
+           
+              
+                <br>
+                
+                <br>
+                </div>
+       `        
+       
+        
+              )  }
+    }
+    
+);
+</script>
+</body>
+</html>
